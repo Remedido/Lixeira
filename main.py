@@ -119,4 +119,4 @@ Reaja com o número correspondente para votar!"
 
         await fazer_backup(guild)
 
-bot.run(os.getenv("MTM5MjU3Nzc1MDc0NDgzMDA1Mw.G2-Pdt.DZKPW6fXdCvTTuZfm-fHQv8Oihh1YqHnU9uVl4"))
+bot.run(os.getenv("DISCORD_TOKEN"))
