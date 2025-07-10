@@ -116,4 +116,4 @@ Reaja com o número correspondente para votar!"
             await mensagem.add_reaction(emoji)
 
         await fazer_backup(guild)
-        bot.run(os.getenv("MTM5MjU3Nzc1MDc0NDgzMDA1Mw.G5oLFs.8-SF8vp0FFEyQcWCj7c3o2-q2-Ahqb9_o8TwRg"))
+        bot.run(os.getenv("DISCORD_TOKEN"))
