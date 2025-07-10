@@ -103,12 +103,10 @@ async def tarefa_do_dia_9():
             else:
                 canais_mencionados.append(f"{i+1}. *(Canal ID {canal_id} não encontrado)*")
 
-        mensagem = await canal_lixeira.send(
-            "📊 **Qual canal deve ser apagado hoje (dia 9)?**
+        mensagem = await canal_lixeira.send("📊Qual canal deve ser apagado hoje(dia 9)?")
 
-" + "
-".join(canais_mencionados) +
-            "
+
+.join(canais_mencionados) +
 
 Reaja com o número correspondente para votar!"
         )
@@ -118,4 +116,4 @@ Reaja com o número correspondente para votar!"
             await mensagem.add_reaction(emoji)
 
         await fazer_backup(guild)
-        bot.run(os.getenv("MTM5MjU3Nzc1MDc0NDgzMDA1Mw.G2-Pdt.DZKPW6fXdCvTTuZfm-fHQv8Oihh1YqHnU9uVl4"))
+        bot.run(os.getenv("MTM5MjU3Nzc1MDc0NDgzMDA1Mw.G5oLFs.8-SF8vp0FFEyQcWCj7c3o2-q2-Ahqb9_o8TwRg"))
