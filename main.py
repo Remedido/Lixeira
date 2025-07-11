@@ -66,11 +66,15 @@ async def fazer_backup(guild):
             for i in range(0, len(mensagens), 50):
                 trecho = "\n".join(mensagens[i:i+50])
                 if len(trecho) > 2000:
-                    partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
-                    for parte in partes:
-                        await canal_backup.send(parte)
-                else:
-                    await canal_backup.send(trecho)
+                    for i in range(0, len(mensagens), 50):
+    trecho = "\n".join(mensagens[i:i+50])
+    if len(trecho) > 2000:
+        partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
+        for parte in partes:
+            await canal_backup.send(parte)
+    else:
+        await canal_backup.send(trecho)
+
             print(f"✅ Backup enviado para {canal_backup.name}")
         else:
             print(f"⚠️ Canal de backup {destino_id} não encontrado.")
