@@ -66,14 +66,11 @@ async def fazer_backup(guild):
             for i in range(0, len(mensagens), 50):
                 trecho = "\n".join(mensagens[i:i+50])
                 if len(trecho) > 2000:
-                    for i in range(0, len(mensagens), 50):
-    trecho = "\n".join(mensagens[i:i+50])
-    if len(trecho) > 2000:
-        partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
-        for parte in partes:
-            await canal_backup.send(parte)
-    else:
-        await canal_backup.send(trecho)
+                    partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
+                    for parte in partes:
+                        await canal_backup.send(parte)
+                else:
+                    await canal_backup.send(trecho)
 
             print(f"✅ Backup enviado para {canal_backup.name}")
         else:
@@ -116,5 +113,4 @@ async def tarefa_do_dia_9():
 
 # 🛡️ Token seguro com variável de ambiente
 bot.run(os.getenv("DISCORD_TOKEN"))
-
 
