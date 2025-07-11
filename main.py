@@ -10,19 +10,16 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-# Canais para backup
+# IDs fornecidos
 CANAIS_BACKUP_DESTINO = [
     1392589268639289516,
     1392589234610766045
 ]
-
 CANAL_ORIGEM_ID = 1280314639867056160
-
 CANAIS_ENQUETE = [
     1280314639867056163,
     1383199009245626448
 ]
-
 NOME_CANAL_LIXEIRA = "lixeira"
 CARGO_BACKUPER = "backuper"
 
@@ -66,14 +63,14 @@ async def fazer_backup(guild):
     for destino_id in CANAIS_BACKUP_DESTINO:
         canal_backup = bot.get_channel(destino_id)
         if canal_backup:
-           for i in range(0, len(mensagens), 50):
-    trecho = "\n".join(mensagens[i:i+50])
-    if len(trecho) > 2000:
-        partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
-        for parte in partes:
-            await canal_backup.send(parte)
-    else:
-        await canal_backup.send(trecho)
+            for i in range(0, len(mensagens), 50):
+                trecho = "\n".join(mensagens[i:i+50])
+                if len(trecho) > 2000:
+                    partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
+                    for parte in partes:
+                        await canal_backup.send(parte)
+                else:
+                    await canal_backup.send(trecho)
             print(f"✅ Backup enviado para {canal_backup.name}")
         else:
             print(f"⚠️ Canal de backup {destino_id} não encontrado.")
@@ -113,6 +110,7 @@ async def tarefa_do_dia_9():
 
         await fazer_backup(guild)
 
-# 🔑 Token de forma segura com variável de ambiente
+# 🛡️ Token seguro com variável de ambiente
 bot.run(os.getenv("DISCORD_TOKEN"))
+
 
