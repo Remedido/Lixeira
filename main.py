@@ -1,4 +1,3 @@
-
 import discord
 from discord.ext import commands, tasks
 from datetime import datetime
@@ -67,15 +66,14 @@ async def fazer_backup(guild):
     for destino_id in CANAIS_BACKUP_DESTINO:
         canal_backup = bot.get_channel(destino_id)
         if canal_backup:
-            for i in range(0, len(mensagens), 50):
-                trecho = "
-".join(mensagens[i:i+50])
-                if len(trecho) > 2000:
-                    partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
-                    for parte in partes:
-                        await canal_backup.send(parte)
-                else:
-                    await canal_backup.send(trecho)
+           for i in range(0, len(mensagens), 50):
+    trecho = "\n".join(mensagens[i:i+50])
+    if len(trecho) > 2000:
+        partes = [trecho[j:j+2000] for j in range(0, len(trecho), 2000)]
+        for parte in partes:
+            await canal_backup.send(parte)
+    else:
+        await canal_backup.send(trecho)
             print(f"✅ Backup enviado para {canal_backup.name}")
         else:
             print(f"⚠️ Canal de backup {destino_id} não encontrado.")
@@ -103,12 +101,10 @@ async def tarefa_do_dia_9():
             else:
                 canais_mencionados.append(f"{i+1}. *(Canal ID {canal_id} não encontrado)*")
 
-        mensagem = await canal_lixeira.send("📊Qual canal deve ser apagado hoje(dia 9)?")
-
-
-.join(canais_mencionados) +
-
-Reaja com o número correspondente para votar!"
+        mensagem = await canal_lixeira.send(
+            "📊 **Qual canal deve ser apagado hoje (dia 9)?**\n\n"
+            + "\n".join(canais_mencionados) +
+            "\n\nReaja com o número correspondente para votar!"
         )
 
         emojis_numeros = ["1️⃣", "2️⃣"]
@@ -116,4 +112,7 @@ Reaja com o número correspondente para votar!"
             await mensagem.add_reaction(emoji)
 
         await fazer_backup(guild)
-        bot.run(os.getenv("DISCORD_TOKEN"))
+
+# 🔑 Token de forma segura com variável de ambiente
+bot.run(os.getenv("DISCORD_TOKEN"))
+
